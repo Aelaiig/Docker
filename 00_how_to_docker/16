@@ -1,0 +1,2 @@
+docker logs -f spawning-pool
+# command will continue streaming the new output from the container’s STDOUT and STDERR

@@ -1,0 +1,4 @@
+docker run -dit --name Abathur -p 192.168.99.100:3000:3000 -v "$(pwd)"root:/root python:2-slim
+docker cp hello.py Abathur:/root/hello.py
+docker exec -it Abathur pip install Flask
+docker exec -it Abathur python /root/hello.py

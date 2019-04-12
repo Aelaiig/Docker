@@ -1,0 +1,4 @@
+docker run --rm -it alpine sh
+# --rm : le container se supprime a la fin de son execution
+# sh : lance bash
+# -it : garde stdin du container sur terminal

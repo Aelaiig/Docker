@@ -1,0 +1,9 @@
+docker run -d --name spawning-pool -e MYSQL_ROOT_PASSWORD=Kerrigan -e  MYSQL_DATABASE=zerglings -v hatchery:/var/lib/mysql --restart on-failure  mysql:latest --default-authentication-plugin=mysql_native_password
+# ||
+# docker run -d --name spawning-pool -e MYSQL_ROOT_PASSWORD=Kerrigan -e  MYSQL_DATABASE=zerglings -v hatchery:/var/lib/mysql --restart on-failure mysql:latest
+# docker exec -i spawning-pool mysql -uroot -pKerrigan <<< "ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'Kerrigan';"
+# to check :
+# docker run --rm -it -v hatchery:/tmp debian
+# ls /tmp // zerglings
+# ||
+# docker inspect -f "{{.HostConfig.Binds}}" spawning-pool

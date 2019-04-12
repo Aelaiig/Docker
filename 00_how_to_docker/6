@@ -1,0 +1,3 @@
+ docker run -d --name overlord -p 192.168.99.100:5000:80 --restart always nginx
+ # http://192.168.99.100:5000/
+ # -d : detach
