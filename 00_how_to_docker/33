@@ -1,0 +1,2 @@
+# docker-machine ssh Char
+docker rmi $(docker images -q)

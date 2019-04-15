@@ -1,0 +1,2 @@
+docker-machine ssh Aiur "docker swarm join --token SWMTKN-1-62omlrpdvyoqqegjereokoh1u0itahj3vi83h56qi0hbw6elou-8sga5vligt7f6u1407n397p20 192.168.99.100:2377"
+# token may be expired

@@ -1,0 +1,2 @@
+docker service rm $(docker service ls -q)
+# -q = prend seulement l'id
