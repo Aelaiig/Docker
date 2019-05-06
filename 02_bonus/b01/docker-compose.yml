@@ -1,0 +1,38 @@
+version: '2.1'
+services:
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=dbtest
+      - MYSQL_USER=devuser
+      - MYSQL_PASSWORD=devpass
+    healthcheck:
+      test: "exit 0"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8003:80"
+    links:
+      - mysql
+    environment:
+      - PMA_HOST=mysql
+    healthcheck:
+      test: "exit 0"
+  server:
+    build:
+      context: .
+    volumes :
+      - ./app/:/usr/app
+    ports:
+      - "8081:8081"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      phpmyadmin:
+        condition: service_healthy
+    command: python hello.py

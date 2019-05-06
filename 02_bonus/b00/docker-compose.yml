@@ -1,0 +1,39 @@
+version: '2.1'
+services:
+  server:
+    build:
+      context: ./server/
+    ports:
+      - "5500:5500"
+    command: npm start
+    volumes:
+      - ./server/:/usr/server
+      - ./client/:/usr/client
+      - /user/server/node_modules
+    depends_on:
+      - database
+    env_file: ./server/.env
+    environment:
+      - SERVER_BACK=http://${HOSTNAME}:5500
+      - SERVER_CLIENT=http://${HOSTNAME}:8080
+  database:
+    image: bitnami/mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./database:/data/db
+    healthcheck:
+      test: "exit 0"
+  client:
+    build: 
+      context: ./client/
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./client/:/usr/client
+      - /user/client/node_modules
+    # env_file: ./client/.env.development
+    environment:
+      - VUE_APP_URI=http://${HOSTNAME}:5500
+    
+    command: npm run-script serve
